@@ -8,19 +8,15 @@ import org.apache.kafka.streams.Topology;
 import org.apache.kafka.streams.kstream.Consumed;
 import org.apache.kafka.streams.kstream.KStream;
 import org.apache.kafka.streams.kstream.Named;
-import org.apache.kafka.streams.kstream.Predicate;
-
-import java.util.HashMap;
-import java.util.Map;
-import java.util.Properties;
-import java.util.concurrent.CountDownLatch;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class BranchesStreamApplication {
+import java.util.Properties;
+import java.util.concurrent.CountDownLatch;
 
-    private final static Logger LOG = LoggerFactory.getLogger(BranchesStreamApplication.class);
+public class BranchesStreamApplication02 {
+
+    private final static Logger LOG = LoggerFactory.getLogger(BranchesStreamApplication02.class);
 
     //0. define variable
     private final static String APP_ID = "kafka_streams_Branche_01";

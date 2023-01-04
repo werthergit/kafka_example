@@ -25,9 +25,12 @@ public class CustomProducer {
         KafkaProducer<String, String> kafkaProducer = new KafkaProducer<>(properties);
 
         // 2 发送数据
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 1000; i++) {
             kafkaProducer.send(new ProducerRecord<>("Topic_Input_002","hello"+i));
             kafkaProducer.send(new ProducerRecord<>("Topic_Input_002","world"+i));
+            if( i%2==0 ){
+                kafkaProducer.send(new ProducerRecord<>("Topic_Input_002","java"+i));
+            }
         }
 
         // 3 关闭资源
