@@ -62,17 +62,27 @@ public class BranchesStreamApplication02 {
     private static Topology buildTopology() {
         final StreamsBuilder builder = new StreamsBuilder();
 
+
+
         KStream<String, String>[] branches = builder
                 .stream(SOURCE_TOPIC, Consumed.with(Serdes.String(), Serdes.String()))
+
                 .peek((k,v)-> LOG.info("[source] value:{}",v), Named.as("pre-transform-peek"))
                 .branch((key, value) -> value.contains("hello"),
-                        (key, value) -> value.contains("world"),
+                        (key, value) -> (isContains(value)),
                         (key, value) -> true);
         branches[0].to(TARGET_TOPIC1);
         branches[1].to(TARGET_TOPIC2);
         branches[2].to(TARGET_TOPIC3);
 
         return builder.build();
+    }
+
+    private static boolean isContains(String str){
+        if( str.contains("hello") || str.contains("world")){
+            return true;
+        }
+        return false;
     }
 
 
